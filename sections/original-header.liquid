@@ -1,0 +1,95 @@
+
+<div class="inner">
+  <div class="logo">
+    <h1>
+      <a href="#">
+        {% comment %} <img src="https://cdn.shopify.com/s/files/1/0699/5584/6455/files/logo_cc0a3b8d-654f-4d81-9a4d-b59f9fc0978c.png?v=1672599436" alt=""> {% endcomment %}
+        <img src="{{ section.settings.header-logo | img_url }}" alt="">
+      </a>
+    </h1>
+  </div>
+  <nav>
+    <ul>
+      {%- for link in section.settings.menu.links -%}
+        <li>
+          <a href="{{ link.url }}">
+            <span>{{ link.title | escape }}</span>
+          </a>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </nav>
+  <div class="icon">
+    <div class="icon_serch"></div>
+    <div class="icon_cart"></div>
+  </div>
+</div>
+
+{%- style -%}
+  .section-header .inner {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .section-header .inner h1 {
+    margin: 0;
+  }
+
+  .section-header .inner h1 a {
+    display: block;
+    width: 200px;
+  }
+
+  .section-header .inner h1 a img {
+    width: 100%;
+  }
+
+  .section-header .inner ul {
+    display: flex;
+    gap: 20px;
+  }
+
+  .section-header .inner ul li {
+    list-style: none;
+  }
+
+  .section-header .inner .icon {
+    display: flex;
+    gap: 20px;
+  }
+
+  .section-header .inner .icon .icon_serch {
+    width: 40px;
+    height: 20px;
+    background-color: #f00;
+  }
+
+  .section-header .inner .icon .icon_cart {
+    width: 40px;
+    height: 20px;
+    background-color: #00f;
+  }
+{%- endstyle -%}
+
+
+{% schema %}
+  {
+    "name": "original-header",
+    "class": "section-header",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "header-logo",
+        "label": "t:sections.header.settings.logo.label"
+      }, {
+        "type": "link_list",
+        "id": "menu",
+        "default": "main-menu",
+        "label": "t:sections.header.settings.menu.label"
+      }
+    ]
+  }
+{% endschema %}
